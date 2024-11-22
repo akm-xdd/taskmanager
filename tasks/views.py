@@ -7,6 +7,9 @@ from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate
 from .models import Invitation
 
+def home(request):
+    return redirect('task_list')
+
 @login_required
 def task_list(request):
     tasks = Task.objects.filter(user=request.user)
