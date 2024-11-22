@@ -6,7 +6,7 @@ This is a simple task manager that allows you to add, delete, and view tasks. A 
 
 ## Prerequisites
 
-- Python 3.12 
+- Python 3.12
 - PostgreSQL
 - Git
 - Virtual Environment (venv)
@@ -116,3 +116,24 @@ In the admin panel, go to the `Invitations` section and add a new invitation. En
 The user will receive an email with a link to register and create an account.
 
 **NOTE**: The email will be sent from the email account specified in the `EMAIL_HOST_USER` environment variable.
+
+## Screenshots
+
+![screenshot-1 ](./screenshots/screenshot-1.png)
+![screenshot-2 ](./screenshots/screenshot-2.png)
+![screenshot-3](./screenshots/image.png)
+![screenshot-4](./screenshots/image-1.png)
+![screenshot-5](./screenshots/image-2.png)
+![screenshot-6](./screenshots/image-3.png)
+![screenshot-7](./screenshots/image-4.png)
+![screenshot-8](./screenshots/image-5.png)
+![screenshot-9](./screenshots/image-6.png)
+![screenshot-10](./screenshots/image-7.png)
+![screenshot-11](./screenshots/image-8.png)
+![screenshot-12](./screenshots/image-9.png)
+![screenshot-13](./screenshots/image-10.png)
+![screenshot-14](./screenshots/image-11.png)
+![screenshot-15](./screenshots/image-12.png)
+![screenshot-16](./screenshots/image-13.png)
+![screenshot-17](./screenshots/image-14.png)
+![screenshot-18](./screenshots/image-15.png)
