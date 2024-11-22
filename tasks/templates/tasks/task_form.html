@@ -1,0 +1,119 @@
+{% extends 'tasks/base.html' %}
+{% block content %}
+<style>
+    .task-form-container {
+        max-width: 600px;
+        margin: 40px auto;
+        padding: 30px;
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+        color: #2d3748;
+        margin-bottom: 24px;
+        font-size: 24px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 8px;
+        color: #4a5568;
+        font-weight: 500;
+    }
+
+    input[type="text"],
+    textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #e2e8f0;
+        border-radius: 4px;
+        font-size: 16px;
+        transition: border-color 0.3s ease;
+    }
+
+    textarea {
+        height: 120px;
+        resize: vertical;
+        font-family: inherit;
+    }
+
+    input[type="text"]:focus,
+    textarea:focus {
+        outline: none;
+        border-color: #4299e1;
+        box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.1);
+    }
+
+    .checkbox-group {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    input[type="checkbox"] {
+        width: 18px;
+        height: 18px;
+        cursor: pointer;
+    }
+
+    .checkbox-group label {
+        margin-bottom: 0;
+        cursor: pointer;
+    }
+
+    button[type="submit"] {
+        background-color: #4299e1;
+        color: white;
+        padding: 12px 24px;
+        border: none;
+        border-radius: 4px;
+        font-size: 16px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    button[type="submit"]:hover {
+        background-color: #3182ce;
+    }
+
+    button[type="submit"]:active {
+        background-color: #2c5282;
+    }
+
+    /* Optional: Add some subtle animation for focus states */
+    input[type="text"],
+    textarea,
+    button[type="submit"] {
+        transition: all 0.2s ease-in-out;
+    }
+</style>
+
+<div class="task-form-container">
+    <h1>{% if task %}Edit Task{% else %}Create Task{% endif %}</h1>
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="id_title">Title:</label>
+            <input type="text" name="title" id="id_title" value="{{ task.title|default_if_none:'' }}" required>
+        </div>
+        <div class="form-group">
+            <label for="id_description">Description:</label>
+            <textarea name="description" id="id_description">{{ task.description|default_if_none:'' }}</textarea>
+        </div>
+        <div class="form-group">
+            <div class="checkbox-group">
+                <input type="checkbox" name="completed" id="id_completed" {% if task and task.completed %}checked{% endif %}>
+                <label for="id_completed">Completed</label>
+            </div>
+        </div>
+        <button type="submit">{% if task %}Save Changes{% else %}Create Task{% endif %}</button>
+    </form>
+</div>
+{% endblock %}

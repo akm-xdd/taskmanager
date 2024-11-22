@@ -1,0 +1,148 @@
+{% extends 'tasks/base.html' %}
+{% block content %}
+<style>
+    .task-container {
+        max-width: 800px;
+        margin: 40px auto;
+        padding: 20px;
+    }
+
+    h1 {
+        color: #2d3748;
+        margin-bottom: 24px;
+        font-size: 28px;
+    }
+
+    .create-task-button {
+        display: inline-block;
+        background-color: #4299e1;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 6px;
+        text-decoration: none;
+        margin-bottom: 24px;
+        transition: background-color 0.3s ease;
+    }
+
+    .create-task-button:hover {
+        background-color: #3182ce;
+    }
+
+    .task-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .task-item {
+        background-color: white;
+        padding: 16px;
+        margin-bottom: 12px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        transition: transform 0.2s ease;
+    }
+
+    .task-item:hover {
+        transform: translateY(-2px);
+    }
+
+    .task-content {
+        flex-grow: 1;
+    }
+
+    .task-title {
+        color: #2d3748;
+        font-size: 16px;
+        font-weight: 600;
+        margin-bottom: 4px;
+    }
+
+    .task-description {
+        color: #718096;
+        font-size: 14px;
+        margin-right: 16px;
+    }
+
+    .task-completed {
+        color: #48bb78;
+        font-style: italic;
+        font-size: 14px;
+        margin-left: 8px;
+    }
+
+    .task-actions {
+        display: flex;
+        gap: 8px;
+    }
+
+    .edit-button,
+    .delete-button {
+        padding: 6px 12px;
+        border-radius: 4px;
+        text-decoration: none;
+        font-size: 14px;
+        transition: background-color 0.3s ease;
+    }
+
+    .edit-button {
+        background-color: #edf2f7;
+        color: #4a5568;
+    }
+
+    .edit-button:hover {
+        background-color: #e2e8f0;
+    }
+
+    .delete-button {
+        background-color: #fed7d7;
+        color: #e53e3e;
+    }
+
+    .delete-button:hover {
+        background-color: #feb2b2;
+    }
+
+    .no-tasks {
+        text-align: center;
+        color: #718096;
+        font-size: 16px;
+        padding: 40px;
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+</style>
+
+<div class="task-container">
+    <h1>Your Tasks</h1>
+    <a href="{% url 'task_create' %}" class="create-task-button">Create New Task</a>
+    
+    {% if tasks %}
+        <ul class="task-list">
+            {% for task in tasks %}
+                <li class="task-item">
+                    <div class="task-content">
+                        <div class="task-title">{{ task.title }}</div>
+                        {% if task.description %}
+                            <div class="task-description">{{ task.description }}</div>
+                        {% endif %}
+                        {% if task.completed %}
+                            <span class="task-completed">(Completed)</span>
+                        {% endif %}
+                    </div>
+                    <div class="task-actions">
+                        <a href="{% url 'task_edit' task.id %}" class="edit-button">Edit</a>
+                        <a href="{% url 'task_delete' task.id %}" class="delete-button">Delete</a>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p class="no-tasks">You have no tasks.</p>
+    {% endif %}
+</div>
+{% endblock %}

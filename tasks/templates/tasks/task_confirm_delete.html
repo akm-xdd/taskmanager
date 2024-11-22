@@ -1,0 +1,81 @@
+{% extends 'tasks/base.html' %}
+{% block content %}
+<style>
+    .delete-container {
+        max-width: 500px;
+        margin: 40px auto;
+        padding: 30px;
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+
+    h1 {
+        color: #e53e3e;
+        margin-bottom: 20px;
+        font-size: 24px;
+    }
+
+    .confirmation-text {
+        color: #4a5568;
+        font-size: 16px;
+        margin-bottom: 30px;
+        line-height: 1.5;
+    }
+
+    .task-title {
+        font-weight: 600;
+        color: #2d3748;
+    }
+
+    .button-group {
+        display: flex;
+        gap: 15px;
+        justify-content: center;
+    }
+
+    .delete-button {
+        background-color: #e53e3e;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .delete-button:hover {
+        background-color: #c53030;
+    }
+
+    .cancel-button {
+        background-color: #718096;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 4px;
+        text-decoration: none;
+        font-size: 16px;
+        transition: background-color 0.3s ease;
+    }
+
+    .cancel-button:hover {
+        background-color: #4a5568;
+    }
+</style>
+
+<div class="delete-container">
+    <h1>Delete Task</h1>
+    <p class="confirmation-text">
+        Are you sure you want to delete the task "<span class="task-title">{{ task.title }}</span>"?
+    </p>
+    <form method="post">
+        {% csrf_token %}
+        <div class="button-group">
+            <button type="submit" class="delete-button">Yes, delete it</button>
+            <a href="{% url 'task_list' %}" class="cancel-button">Cancel</a>
+        </div>
+    </form>
+</div>
+{% endblock %}
