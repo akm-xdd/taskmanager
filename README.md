@@ -4,6 +4,15 @@
 
 This is a simple task manager that allows you to add, delete, and view tasks. A user is able to login either via username and password or via Google login.
 
+## Prerequisites
+
+- Python 3.12 
+- PostgreSQL
+- Git
+- Virtual Environment (venv)
+- Google Developer Account (for Google OAuth)
+- Mailtrap Account (for sending emails)
+
 ## Installation
 
 1. Clone the repository to your local machine using the following command:
